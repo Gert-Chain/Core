@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"gert/x/scheduler/client/cli"
-	"gerttestutil/network"
+	"gert/testutil/network"
 )
 
 func TestCreateHook(t *testing.T) {

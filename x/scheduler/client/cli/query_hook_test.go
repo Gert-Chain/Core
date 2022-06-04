@@ -13,8 +13,8 @@ import (
 
 	"gert/x/scheduler/client/cli"
 	"gert/x/scheduler/types"
-	"gerttestutil/network"
-	"gerttestutil/nullify"
+	"gert/testutil/network"
+	"gert/testutil/nullify"
 )
 
 func networkWithHookObjects(t *testing.T, n int) (*network.Network, []types.Hook) {
