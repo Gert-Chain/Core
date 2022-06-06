@@ -4,17 +4,17 @@ import { StdFee } from "@cosmjs/launchpad";
 import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry, OfflineSigner, EncodeObject, DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { Api } from "./rest";
-import { MsgBurn } from "./types/denom/tx";
-import { MsgMint } from "./types/denom/tx";
-import { MsgChangeAdmin } from "./types/denom/tx";
 import { MsgCreateDenom } from "./types/denom/tx";
+import { MsgBurn } from "./types/denom/tx";
+import { MsgChangeAdmin } from "./types/denom/tx";
+import { MsgMint } from "./types/denom/tx";
 
 
 const types = [
-  ["/gert.denom.MsgBurn", MsgBurn],
-  ["/gert.denom.MsgMint", MsgMint],
-  ["/gert.denom.MsgChangeAdmin", MsgChangeAdmin],
   ["/gert.denom.MsgCreateDenom", MsgCreateDenom],
+  ["/gert.denom.MsgBurn", MsgBurn],
+  ["/gert.denom.MsgChangeAdmin", MsgChangeAdmin],
+  ["/gert.denom.MsgMint", MsgMint],
   
 ];
 export const MissingWalletError = new Error("wallet is required");
@@ -47,10 +47,10 @@ const txClient = async (wallet: OfflineSigner, { addr: addr }: TxClientOptions =
 
   return {
     signAndBroadcast: (msgs: EncodeObject[], { fee, memo }: SignAndBroadcastOptions = {fee: defaultFee, memo: ""}) => client.signAndBroadcast(address, msgs, fee,memo),
-    msgBurn: (data: MsgBurn): EncodeObject => ({ typeUrl: "/gert.denom.MsgBurn", value: MsgBurn.fromPartial( data ) }),
-    msgMint: (data: MsgMint): EncodeObject => ({ typeUrl: "/gert.denom.MsgMint", value: MsgMint.fromPartial( data ) }),
-    msgChangeAdmin: (data: MsgChangeAdmin): EncodeObject => ({ typeUrl: "/gert.denom.MsgChangeAdmin", value: MsgChangeAdmin.fromPartial( data ) }),
     msgCreateDenom: (data: MsgCreateDenom): EncodeObject => ({ typeUrl: "/gert.denom.MsgCreateDenom", value: MsgCreateDenom.fromPartial( data ) }),
+    msgBurn: (data: MsgBurn): EncodeObject => ({ typeUrl: "/gert.denom.MsgBurn", value: MsgBurn.fromPartial( data ) }),
+    msgChangeAdmin: (data: MsgChangeAdmin): EncodeObject => ({ typeUrl: "/gert.denom.MsgChangeAdmin", value: MsgChangeAdmin.fromPartial( data ) }),
+    msgMint: (data: MsgMint): EncodeObject => ({ typeUrl: "/gert.denom.MsgMint", value: MsgMint.fromPartial( data ) }),
     
   };
 };
